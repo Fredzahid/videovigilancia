@@ -107,6 +107,9 @@
             <a href="{{ route('sections.index') }}" class="sidebar-link {{ request()->routeIs('sections.*') ? 'active' : '' }}">
                 <i class="bi bi-collection"></i> Secciones
             </a>
+            <a href="{{ route('surveillance.index') }}" class="sidebar-link {{ request()->routeIs('surveillance.*') ? 'active' : '' }}">
+                <i class="bi bi-camera-video"></i> Videovigilancia
+            </a>
         </nav>
     </aside>
 

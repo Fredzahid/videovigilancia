@@ -1,0 +1,6 @@
+hls: yes
+hlsAddress: :8888
+paths:
+  camara:
+    source: publisher
+    rtspTransport: tcp

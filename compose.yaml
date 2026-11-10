@@ -1,0 +1,10 @@
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:1.21.3
+    restart: unless-stopped
+    environment:
+      MTX_PATHS_CAMARA_SOURCE: ${CAMERA_RTSP_URL:?Configura CAMERA_RTSP_URL en el archivo .env}
+    ports:
+      - "${HLS_PORT:-8888}:8888"
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro

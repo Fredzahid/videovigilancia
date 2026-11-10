@@ -9,6 +9,7 @@ use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SurveillanceController;
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,6 +27,16 @@ Route::put('/paginas/actualizar', [PageController::class, 'update'])->middleware
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
+
+// Videovigilancia
+Route::middleware('auth')->prefix('surveillance')->name('surveillance.')->group(function () {
+    Route::get('/', [SurveillanceController::class, 'index'])->name('index');
+    Route::get('/cameras/create', [SurveillanceController::class, 'create'])->name('cameras.create');
+    Route::post('/cameras', [SurveillanceController::class, 'store'])->name('cameras.store');
+    Route::get('/cameras/{camera}/edit', [SurveillanceController::class, 'edit'])->name('cameras.edit');
+    Route::put('/cameras/{camera}', [SurveillanceController::class, 'update'])->name('cameras.update');
+    Route::delete('/cameras/{camera}', [SurveillanceController::class, 'destroy'])->name('cameras.destroy');
+});
 
 // CRUD Noticias
 Route::get('/news', [NewsController::class, 'index'])
